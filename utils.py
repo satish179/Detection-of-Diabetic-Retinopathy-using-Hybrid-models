@@ -3,7 +3,6 @@ import torchvision.transforms as transforms
 from timm import create_model
 import torch.nn.functional as F
 
-# Human-friendly class names
 class_names = [
     "No Diabetic Retinopathy",
     "Mild Diabetic Retinopathy",
@@ -12,14 +11,12 @@ class_names = [
     "Proliferative Diabetic Retinopathy"
 ]
 
-# Load SwinV2 model
 def load_model():
     model = create_model('swinv2_small_window16_256', pretrained=False, num_classes=5)
-    model.load_state_dict(torch.load("model/swinv2_small_window16_256_epoch45.pt", map_location="cpu"))
+    model.load_state_dict(torch.load("model.pt", map_location="cpu"))
     model.eval()
     return model
 
-# Load once globally
 model = load_model()
 
 # Preprocessing
