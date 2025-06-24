@@ -71,7 +71,7 @@ input[type="file"] {
 
 img#preview {
     display: block;
-    margin: 10px auto 0 auto; /* top:10px, left/right:auto centers it */
+    margin: 10px auto 0 auto; 
     max-width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -106,7 +106,7 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Spinner with animated dots */
+
 #spinner {
     margin-top: 20px;
     font-weight: bold;
@@ -128,7 +128,7 @@ h3 {
     100% { content: '...'; }
 }
 
-/* Project Info */
+
 .project-info {
     max-width: 700px;
     margin-top: 40px;
@@ -148,7 +148,7 @@ h3 {
     color: #007BFF;
 }
 
-/* DR Severity Legend */
+
 .dr-legend {
     max-width: 700px;
     margin-top: 30px;
@@ -176,7 +176,7 @@ h3 {
     margin-bottom: 8px;
 }
 
-/* Dark mode styles */
+
 .dark-mode {
     background: #121212;
     color: #f0f0f0;
