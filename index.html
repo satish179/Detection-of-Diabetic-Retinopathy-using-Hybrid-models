@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hybrid DR Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="light-mode">
+    <header>
+        <h1>Hybrid Models for Enhanced Detection and Classification of Diabetic Retinopathy</h1>
+        <button id="toggleTheme" title="Toggle Theme">🌙</button>
+    </header>
+
+    <main>
+        <form method="POST" enctype="multipart/form-data" onsubmit="showSpinner()">
+            <input type="file" id="imageInput" name="image" accept=".jpg,.jpeg,.png" onchange="validateImage(event)" required><br>
+
+            {% if image_data %}
+                <img id="preview" src="data:image/jpeg;base64,{{ image_data }}" alt="Uploaded Image" style="max-width: 300px; margin-top: 10px;" />
+            {% else %}
+                <img id="preview" src="#" alt="Image preview" style="display:none; max-width: 300px; margin-top: 10px;" />
+            {% endif %}
+            <br>
+
+            <button type="submit">Classify Image</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </form>
+
+        {% if not prediction and image_data %}
+            <div id="spinner" style="display: block;">
+                <span>Processing<span class="dots"></span></span>
+            </div>
+        {% else %}
+            <div id="spinner" style="display: none;">
+                <span>Processing<span class="dots"></span></span>
+            </div>
+        {% endif %}
+
+        {% if prediction %}
+            <h3>{{ prediction }}</h3>
+        {% endif %}
+
+        <div class="project-info">
+            <h4>About the Project</h4>
+            <p>
+                This web application uses a hybrid deep learning model based on SwinV2 to detect and classify 
+                Diabetic Retinopathy from retinal images. It enables early diagnosis and can assist ophthalmologists 
+                in treatment planning.
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // Theme toggle using localStorage
+        const body = document.body;
+        const toggleBtn = document.getElementById('toggleTheme');
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark") {
+            body.classList.add("dark-mode");
+            toggleBtn.textContent = "☀️";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            toggleBtn.textContent = isDark ? "☀️" : "🌙";
+        });
+
+        // Image validation and preview
+        function validateImage(event) {
+            const file = event.target.files[0];
+            const fileName = file.name.toLowerCase();
+            const allowedExtensions = ['.jpg', '.jpeg', '.png'];
+
+            const isValid = allowedExtensions.some(ext => fileName.endsWith(ext));
+            if (!isValid) {
+                alert("Please upload a valid retinal image (.jpg, .jpeg, .png only).");
+                event.target.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function () {
+                const output = document.getElementById('preview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Show loading spinner
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'block';
+        }
+
+        // Clear input and preview
+        function clearForm() {
+            document.getElementById('imageInput').value = "";
+            const preview = document.getElementById('preview');
+            preview.src = "#";
+            preview.style.display = "none";
+
+            const predictionText = document.querySelector('h3');
+            if (predictionText) predictionText.innerHTML = "";
+
+            document.getElementById('spinner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

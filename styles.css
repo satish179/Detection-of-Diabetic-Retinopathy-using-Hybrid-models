@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #edf2f7, #e2ebf0);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.4s, color 0.4s;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffffdd;
+    padding: 20px 40px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 20px;
+    max-width: 90%;
+}
+
+#toggleTheme {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #444;
+    transition: color 0.3s;
+}
+
+#toggleTheme:hover {
+    color: #222;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    max-width: 90%;
+}
+
+img#preview {
+    display: block;
+    margin: 10px auto 0 auto; /* top:10px, left/right:auto centers it */
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+button[type="submit"],
+button[type="button"] {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+h3 {
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+.warning-text {
+    font-size: 14px;
+    color: #d9534f;
+    margin-bottom: 10px;
+}
+
+/* Spinner with animated dots */
+#spinner {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.dots::after {
+    content: '';
+    display: inline-block;
+    animation: dots 1.5s steps(3, end) infinite;
+    width: 1em;
+    text-align: left;
+}
+
+@keyframes dots {
+    0%   { content: ''; }
+    33%  { content: '.'; }
+    66%  { content: '..'; }
+    100% { content: '...'; }
+}
+
+/* Project Info */
+.project-info {
+    max-width: 700px;
+    margin-top: 40px;
+    padding: 25px;
+    background: #f9f9f9;
+    border-left: 6px solid #007BFF;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.6;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.project-info h4 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #007BFF;
+}
+
+/* DR Severity Legend */
+.dr-legend {
+    max-width: 700px;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f1faff;
+    border-left: 5px solid #007BFF;
+    border-radius: 10px;
+    font-size: 15px;
+    line-height: 1.6;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.dr-legend h4 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #007BFF;
+}
+
+.dr-legend ul {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.dr-legend li {
+    margin-bottom: 8px;
+}
+
+/* Dark mode styles */
+.dark-mode {
+    background: #121212;
+    color: #f0f0f0;
+}
+
+.dark-mode header {
+    background-color: #1f1f1f;
+    color: #fff;
+}
+
+.dark-mode form {
+    background-color: #2b2b2b;
+    color: #fff;
+}
+
+.dark-mode input[type="file"] {
+    background-color: #444;
+    color: #eee;
+    border: none;
+}
+
+.dark-mode button[type="submit"],
+.dark-mode button[type="button"] {
+    background-color: #2196F3;
+}
+
+.dark-mode .project-info,
+.dark-mode .dr-legend {
+    background-color: #1e1e1e;
+    color: #ccc;
+    border-left-color: #2196F3;
+}
+
+.dark-mode h3 {
+    color: #eee;
+}
