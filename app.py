@@ -1,10 +1,11 @@
 import base64
+import os
 from io import BytesIO
 from flask import Flask, render_template, request
 from PIL import Image
 from utils import predict_image  # 🔁 Uses actual model now
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=".", static_folder=".", static_url_path="")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -26,4 +27,4 @@ def index():
     return render_template('index.html', prediction=prediction, image_data=image_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5000")), debug=False)
